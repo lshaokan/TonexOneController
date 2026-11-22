@@ -1417,10 +1417,49 @@ void create_screen_settings() {
                             lv_label_set_text_static(obj, "0");
                         }
                         {
+                            // ui_EQMidFreqLabel
+                            lv_obj_t *obj = lv_label_create(parent_obj);
+                            objects.ui_eq_mid_freq_label = obj;
+                            lv_obj_set_pos(obj, 4, 4);
+                            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                            lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+                            lv_obj_set_style_text_font(obj, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+                            lv_obj_set_style_align(obj, LV_ALIGN_LEFT_MID, LV_PART_MAIN | LV_STATE_DEFAULT);
+                            lv_label_set_text_static(obj, "Mid Freq");
+                        }
+                        {
+                            // ui_EQMidFreqSlider
+                            lv_obj_t *obj = lv_slider_create(parent_obj);
+                            objects.ui_eq_mid_freq_slider = obj;
+                            lv_obj_set_pos(obj, 113, 4);
+                            lv_obj_set_size(obj, 290, 15);
+                            lv_slider_set_range(obj, 0, 10);
+                            lv_slider_set_value(obj, 5, LV_ANIM_OFF);
+                            lv_obj_add_event_cb(obj, action_slider_event, LV_EVENT_RELEASED, (void *)0);
+                            lv_obj_add_event_cb(obj, action_slider_event, LV_EVENT_VALUE_CHANGED, (void *)0);
+                            lv_obj_set_style_align(obj, LV_ALIGN_LEFT_MID, LV_PART_MAIN | LV_STATE_DEFAULT);
+                            lv_obj_set_style_bg_color(obj, lv_color_hex(0x424242), LV_PART_MAIN | LV_STATE_DEFAULT);
+                            lv_obj_set_style_bg_color(obj, lv_color_hex(0x513d2b), LV_PART_INDICATOR | LV_STATE_DEFAULT);
+                            lv_obj_set_style_bg_color(obj, lv_color_hex(0xfb9230), LV_PART_KNOB | LV_STATE_DEFAULT);
+                        }
+                        {
+                            // ui_EQMidFreqValue
+                            lv_obj_t *obj = lv_label_create(parent_obj);
+                            objects.ui_eq_mid_freq_value = obj;
+                            lv_obj_set_pos(obj, 417, 4);
+                            lv_obj_set_size(obj, 60, LV_SIZE_CONTENT);
+                            lv_obj_add_event_cb(obj, action_value_clicked, LV_EVENT_PRESSED, (void *)0);
+                            lv_obj_add_flag(obj, LV_OBJ_FLAG_CLICKABLE);
+                            lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+                            lv_obj_set_style_text_font(obj, &lv_font_montserrat_14, LV_PART_MAIN | LV_STATE_DEFAULT);
+                            lv_obj_set_style_align(obj, LV_ALIGN_LEFT_MID, LV_PART_MAIN | LV_STATE_DEFAULT);
+                            lv_label_set_text_static(obj, "0");
+                        }
+                        {
                             // ui_EQMidQLabel
                             lv_obj_t *obj = lv_label_create(parent_obj);
                             objects.ui_eq_mid_qlabel = obj;
-                            lv_obj_set_pos(obj, 4, 4);
+                            lv_obj_set_pos(obj, 4, 42);
                             lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
                             lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
                             lv_obj_set_style_text_font(obj, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -1431,7 +1470,7 @@ void create_screen_settings() {
                             // ui_EQMidQSlider
                             lv_obj_t *obj = lv_slider_create(parent_obj);
                             objects.ui_eq_mid_qslider = obj;
-                            lv_obj_set_pos(obj, 113, 4);
+                            lv_obj_set_pos(obj, 113, 42);
                             lv_obj_set_size(obj, 290, 15);
                             lv_slider_set_range(obj, 0, 10);
                             lv_slider_set_value(obj, 5, LV_ANIM_OFF);
@@ -1446,7 +1485,7 @@ void create_screen_settings() {
                             // ui_EQMidQValue
                             lv_obj_t *obj = lv_label_create(parent_obj);
                             objects.ui_eq_mid_qvalue = obj;
-                            lv_obj_set_pos(obj, 417, 4);
+                            lv_obj_set_pos(obj, 417, 42);
                             lv_obj_set_size(obj, 60, LV_SIZE_CONTENT);
                             lv_obj_add_event_cb(obj, action_value_clicked, LV_EVENT_PRESSED, (void *)0);
                             lv_obj_add_flag(obj, LV_OBJ_FLAG_CLICKABLE);
@@ -1459,7 +1498,7 @@ void create_screen_settings() {
                             // ui_EQTrebleLabel
                             lv_obj_t *obj = lv_label_create(parent_obj);
                             objects.ui_eq_treble_label = obj;
-                            lv_obj_set_pos(obj, 4, 42);
+                            lv_obj_set_pos(obj, 4, 80);
                             lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
                             lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
                             lv_obj_set_style_text_font(obj, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -1470,7 +1509,7 @@ void create_screen_settings() {
                             // ui_EQTrebleSlider
                             lv_obj_t *obj = lv_slider_create(parent_obj);
                             objects.ui_eq_treble_slider = obj;
-                            lv_obj_set_pos(obj, 113, 42);
+                            lv_obj_set_pos(obj, 113, 80);
                             lv_obj_set_size(obj, 290, 15);
                             lv_slider_set_range(obj, 0, 10);
                             lv_slider_set_value(obj, 5, LV_ANIM_OFF);
@@ -1485,7 +1524,7 @@ void create_screen_settings() {
                             // ui_EQTrebleValue
                             lv_obj_t *obj = lv_label_create(parent_obj);
                             objects.ui_eq_treble_value = obj;
-                            lv_obj_set_pos(obj, 417, 42);
+                            lv_obj_set_pos(obj, 417, 80);
                             lv_obj_set_size(obj, 60, LV_SIZE_CONTENT);
                             lv_obj_add_event_cb(obj, action_value_clicked, LV_EVENT_PRESSED, (void *)0);
                             lv_obj_add_flag(obj, LV_OBJ_FLAG_CLICKABLE);

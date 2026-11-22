@@ -355,6 +355,10 @@ void tonex_action_parameter_changed(lv_event_t * e)
     {
         usb_modify_parameter(TONEX_PARAM_EQ_MID, ((float)lv_slider_get_value(obj))/10.0f);
     }
+    else if (obj == objects.ui_eq_mid_freq_slider)
+    {
+        usb_modify_parameter(TONEX_PARAM_EQ_MID_FREQ, lv_slider_get_value(obj));
+    }
     else if (obj == objects.ui_eq_mid_qslider)
     {
         usb_modify_parameter(TONEX_PARAM_EQ_MIDQ, ((float)lv_slider_get_value(obj))/10.0f);
@@ -1180,7 +1184,15 @@ uint8_t tonex_update_ui_parameters(void)
 
                 case TONEX_PARAM_EQ_MID_FREQ:
                 {
-                    // not exposed via UI
+                    lv_slider_set_range(objects.ui_eq_mid_freq_slider, round(param_entry->Min), round(param_entry->Max));
+                    lv_slider_set_value(objects.ui_eq_mid_freq_slider, round(param_entry->Value), LV_ANIM_OFF);
+
+                    // show value and units
+                    sprintf(value_string, "%d Hz", (int)round(param_entry->Value));
+                    lv_label_set_text(objects.ui_eq_mid_freq_value, value_string);
+
+                    // set user data for later use
+                    lv_obj_set_user_data(objects.ui_eq_mid_freq_value, (void*)(uintptr_t)TONEX_PARAM_EQ_MID_FREQ);
                 } break;
 
                 case TONEX_PARAM_EQ_TREBLE:
