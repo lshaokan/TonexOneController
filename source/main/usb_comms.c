@@ -390,6 +390,15 @@ void class_driver_task(void *arg)
 
                 if (s->device_type == DEVICE_TYPE_MODELLER)
                 {
+#if CONFIG_TONEX_CONTROLLER_RESTART_ON_MODELLER_DISCONNECT
+                    // Restart rather than tearing down the USB connection in place.
+                    // A clean boot is the same path as a power cycle, which is known
+                    // to reconnect reliably when the modeller is plugged back in.
+                    ESP_LOGW(TAG, "Modeller disconnected, restarting controller");
+                    control_set_usb_status(0);
+                    vTaskDelay(pdMS_TO_TICKS(250));
+                    esp_restart();
+#endif
                     // clean up
                     switch (AmpModellerType)
                     {

@@ -129,6 +129,9 @@ typedef struct _objects_t {
     lv_obj_t *ui_eq_mid_label;
     lv_obj_t *ui_eq_mid_slider;
     lv_obj_t *ui_eq_mid_value;
+    lv_obj_t *ui_eq_mid_freq_label;
+    lv_obj_t *ui_eq_mid_freq_slider;
+    lv_obj_t *ui_eq_mid_freq_value;
     lv_obj_t *ui_eq_mid_qlabel;
     lv_obj_t *ui_eq_mid_qslider;
     lv_obj_t *ui_eq_mid_qvalue;

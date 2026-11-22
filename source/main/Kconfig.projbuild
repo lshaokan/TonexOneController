@@ -125,6 +125,15 @@ menu "Tonex Controller Configuration"
         help
             Sets if the screen defaults to 180 degree rotation
         
+    config TONEX_CONTROLLER_RESTART_ON_MODELLER_DISCONNECT
+        bool "Restart controller when the amp modeller is unplugged"
+        default "y"
+        help
+            When the amp modeller (e.g. Tonex One) is unplugged from USB, restart
+            the controller instead of trying to clean up the USB connection in place.
+            This gives the same result as a power cycle, so the pedal reconnects
+            cleanly when it is plugged back in.
+
     config TONEX_CONTROLLER_SHOW_BPM_INDICATOR
         bool "Show BPM flashing indicator on LCD"
         default "n"
